@@ -1,10 +1,15 @@
 const { Router } = require('express');
+const { usuariosGet, usuariosPost, usuariosPut, usuariosDelete } = require('../controllers/usuarios');
 
 const router = Router();
 
-//vamos a ir ponniendno todas las rutas de mi apii referido a lo de usuarios
+router.get('/', usuariosGet);
 
+router.post('/', usuariosPost);
 
+router.put('/:id', usuariosPut);
+
+router.delete('/:id', usuariosDelete)
 
 
 module.exports = router
