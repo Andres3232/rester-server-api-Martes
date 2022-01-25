@@ -1,10 +1,8 @@
 
-
+const Usuario = require('../models/usuario')
 
  const usuariosGet = ( req, res ) => {
 
-     const { limite } = req.query;
-     
 
      res.status(200).json({
          msg: 'GET USUARIOS',
@@ -13,13 +11,17 @@
 
  }
 
-const usuariosPost = ( req, res ) => {
+const usuariosPost = async ( req, res ) => {
     
-    const body = req.body;
+    const { nombre, correo, password, rol } = req.body;
+
+    const usuario = new Usuario({ nombre, correo, password, rol })
+
+    await usuario.save()
 
     res.status(200).json({
         msg: 'POST USUARIOS',
-        body
+        usuario
     })
 
 }
@@ -54,3 +56,4 @@ module.exports = {
     usuariosPut,
     usuariosDelete
 }
+
